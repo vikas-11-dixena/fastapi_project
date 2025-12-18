@@ -1,0 +1,10 @@
+2025-12-17 17:59:20 | INFO | app.services.product_service | Creating product
+2025-12-17 18:01:10 | ERROR | app.core.exceptions | Product not found
+2025-12-17 18:02:45 | ERROR | app.core.exceptions | Unhandled exception
+2025-12-17 19:21:09,972 | INFO | app.services.product_service | Fetching all products
+2025-12-17 19:22:37,512 | INFO | app.services.product_service | Updating product with id=2
+2025-12-17 19:22:46,876 | INFO | app.services.product_service | Fetching all products
+2025-12-18 11:22:42,664 | INFO | app.services.product_service | Fetching all products
+2025-12-18 11:28:19,648 | INFO | app.services.product_service | Deleting product with id=15
+2025-12-18 12:03:16,774 | WARNING | app.services.product_service | No products found for keyword: dell laptop
+2025-12-18 12:03:16,778 | ERROR | app.core.exceptions | HTTP Error: No products found
