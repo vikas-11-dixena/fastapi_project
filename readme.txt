@@ -90,3 +90,4 @@ Deployment github to vercel step by step
 5) git remote add origin https://github.com/vikas-11-dixena/fastapi_project.git
 6) git push -u origin main
 7) git status
+8) git add readme.txt
