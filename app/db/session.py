@@ -1,6 +1,6 @@
-import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import os
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -14,3 +14,11 @@ SessionLocal = sessionmaker(
     autoflush=False,
     bind=engine
 )
+
+# ✅ THIS FUNCTION WAS MISSING
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
