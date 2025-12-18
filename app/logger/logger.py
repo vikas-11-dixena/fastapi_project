@@ -1,50 +1,32 @@
 import logging
 import sys
-from pathlib import Path
+import os
 
-# =========================
-# Logs directory & file
-# =========================
-LOG_DIR = Path("logs")
-LOG_DIR.mkdir(parents=True, exist_ok=True)
+def get_logger(name: str) -> logging.Logger: # Get configured logger
+    logger = logging.getLogger(name) # Create logger instance
 
-LOG_FILE = LOG_DIR / "app.log"
+    if logger.handlers: # If handlers already exist, return the logger
+        return logger # Return existing logger
 
-
-def get_logger(name: str) -> logging.Logger:
-    logger = logging.getLogger(name)
-
-    # Prevent duplicate handlers (important)
-    if logger.handlers:
-        return logger
-
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.INFO) # Set log level to INFO
 
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
-    )
+    ) # Define log format
 
-    # =========================
-    # Console Handler (stdout)
-    # =========================
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setLevel(logging.INFO)
-    console_handler.setFormatter(formatter)
+    # ✅ Console handler (works everywhere)
+    console_handler = logging.StreamHandler(sys.stdout) # Console handler
+    console_handler.setFormatter(formatter) # Set formatter
+    logger.addHandler(console_handler) # Add console handler to logger
 
-    # =========================
-    # File Handler (logs/app.log)
-    # =========================
-    file_handler = logging.FileHandler(LOG_FILE, encoding="utf-8")
-    file_handler.setLevel(logging.INFO)
-    file_handler.setFormatter(formatter)
+    # ✅ File handler ONLY for local (NOT Vercel)
+    if not os.getenv("VERCEL"): # Check if not running on Vercel
+        from pathlib import Path # Import Path for directory handling
+        LOG_DIR = Path("logs") # Define logs directory
+        LOG_DIR.mkdir(exist_ok=True) # Create logs directory if not exists
+        file_handler = logging.FileHandler(LOG_DIR / "app.log", encoding="utf-8") # File handler
+        file_handler.setFormatter(formatter) # Set formatter
+        logger.addHandler(file_handler) # Add file handler to logger
 
-    # =========================
-    # Attach handlers
-    # =========================
-    logger.addHandler(console_handler)
-    logger.addHandler(file_handler)
-
-    # Prevent log duplication from root logger
-    logger.propagate = False
-
-    return logger
+    logger.propagate = False # Disable propagation to root logger
+    return logger # Return configured logger
