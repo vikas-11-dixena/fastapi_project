@@ -40,7 +40,7 @@ def get_all(db: Session = Depends(get_db)):
 # =========================
 # READ PRODUCT BY ID
 # =========================
-@router.get("/{product_id}", response_model=ProductResponse)
+@router.get("/{id}", response_model=ProductResponse)
 def get(product_id: int, db: Session = Depends(get_db)):
     return product_service.get_product(db, product_id)
 
@@ -48,7 +48,7 @@ def get(product_id: int, db: Session = Depends(get_db)):
 # =========================
 # UPDATE PRODUCT
 # =========================
-@router.put("/{product_id}", response_model=ProductResponse)
+@router.put("/{id}", response_model=ProductResponse)
 def update(product_id: int, data: ProductUpdate, db: Session = Depends(get_db)):
     return product_service.update_product(db, product_id, data)
 
@@ -56,6 +56,6 @@ def update(product_id: int, data: ProductUpdate, db: Session = Depends(get_db)):
 # =========================
 # DELETE PRODUCT
 # =========================
-@router.delete("/{product_id}")
+@router.delete("/{id}")
 def delete(product_id: int, db: Session = Depends(get_db)):
     return product_service.delete_product(db, product_id)

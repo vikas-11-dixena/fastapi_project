@@ -37,8 +37,8 @@ def get_products(db: Session):
 # =========================
 # READ PRODUCT BY ID
 # =========================
-def get_product(db: Session, product_id: int):
-    product = crud.get_product_by_id(db, product_id)
+def get_product(db: Session, id: int):
+    product = crud.get_product_by_id(db, id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     return product
@@ -47,8 +47,8 @@ def get_product(db: Session, product_id: int):
 # =========================
 # UPDATE PRODUCT
 # =========================
-def update_product(db: Session, product_id: int, data: ProductUpdate):
-    product = crud.update_product(db, product_id, data)
+def update_product(db: Session, id: int, data: ProductUpdate):
+    product = crud.update_product(db, id, data)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     return product
@@ -57,8 +57,8 @@ def update_product(db: Session, product_id: int, data: ProductUpdate):
 # =========================
 # DELETE PRODUCT
 # =========================
-def delete_product(db: Session, product_id: int):
-    product = crud.delete_product(db, product_id)
+def delete_product(db: Session, id: int):
+    product = crud.delete_product(db, id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     return {"message": "Product deleted successfully"}
