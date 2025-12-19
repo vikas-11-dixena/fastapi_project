@@ -1,4 +1,5 @@
 this file structure follow up:- 
+-------------------------------------------------------------------------------------------------
 fastapi-demo-products-with-ui/
 │
 ├── app/                      # Main application package
@@ -29,9 +30,8 @@ fastapi-demo-products-with-ui/
 │   ├── api/                  # API routes
 │   │   ├── __init__.py
 │   │   ├── deps.py           # Dependencies (auth, db)
-│   │   └── v1/
-│   │       ├── __init__.py
-│   │       └── product.py
+│   │   ├── __init__.py
+│   │   └── product.py
 │   │
 │   ├── services/             # Business logic layer
 │   │   └── product_service.py
@@ -46,7 +46,10 @@ fastapi-demo-products-with-ui/
 ├── .gitignore
 └── README.md
 
+-----------------------------------------------------------------------------------
+
 commands for the requirements completely install:-
+-----------------------------------------------------------------------------------
 
 it's commands use in the python fastapi projects
 
@@ -66,7 +69,10 @@ pip install python-dotenv -- .env file install
 
 python -m uvicorn app.main:app --reload -- another way to run program
 
+-----------------------------------------------------------------------------------------------
+
 Steps how it's working in the file folder by code
+---------------------------------------------------------------------------------------
 working :- Request → main.py → router → service → crud → model → database → response
 Not working :-  Request
  → main.py
@@ -81,6 +87,8 @@ Not working :-  Request
  → FileHandler → logs/app.log
  → JSON Error Response
 
+ -----------------------------------------------------------------------------------------------
+
 Deployment github to vercel step by step
 ------------------------------------------
 1) git init
@@ -91,3 +99,16 @@ Deployment github to vercel step by step
 6) git push -u origin main
 7) git status
 8) git add readme.txt
+
+
+cloud Database create kr ne ke bad ki querry
+--------------------------------------------
+CREATE TABLE IF NOT EXISTS products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price NUMERIC(10,2) NOT NULL,
+    quantity INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
