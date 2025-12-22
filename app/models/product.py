@@ -10,3 +10,4 @@ class Product(Base):
     description = Column(Text, nullable=True)
     price = Column(Numeric(10, 2), nullable=False)
     quantity = Column(Integer, default=0)
+

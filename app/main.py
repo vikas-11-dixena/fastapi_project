@@ -1,5 +1,10 @@
 from fastapi import FastAPI
-from app.router.product import router as product_router
+from app.database.connection import engine
+from app.database.base import Base
+
+# Import models (VERY IMPORTANT)
+from app.models.customer import Customer
+from app.models.customer_product import CustomerProduct
 
 app = FastAPI(title="Products API")
 
@@ -7,4 +12,5 @@ app = FastAPI(title="Products API")
 def root():
     return {"message": "Products API is running"}
 
-app.include_router(product_router)
+# Create tables
+Base.metadata.create_all(bind=engine)
