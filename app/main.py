@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.database.connection import engine
-from app.database.base import Base
+from app.db.session import engine
+from app.db.base import Base
 
 # Import models (VERY IMPORTANT)
 from app.models.customer import Customer
